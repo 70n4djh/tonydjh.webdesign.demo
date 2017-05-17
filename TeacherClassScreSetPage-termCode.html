@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>成绩录入</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <LINK href="css/amazeui.min.css" type=text/css rel=stylesheet>
+    <LINK href="css/MainStyle.less" type=text/css rel=stylesheet/less>
+    <script language="javascript">
+        function check(obj){
+            var j = 0;
+            //先把非数字的都替换掉，除了数字和.
+            obj.value = obj.value.replace(/[^\d.]/g,"");
+            //必须保证第一个为数字而不是.
+            obj.value = obj.value.replace(/^\./g,"");
+            //保证只有出现一个.而没有多个.
+            obj.value = obj.value.replace(/\.{2,}/g,".");
+            //保证.只出现一次，而不能出现两次以上
+            obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        }
+        function checkAndCalculates(obj){
+            check(obj);
+            for(j=0;j<form1.length;j++) {
+                if (form1.elements[j].name.substring(0,3)=="ps_" && form1.elements[j].name!="ps_ratio"){
+                    calculate(form1.elements[j]);
+                }
+            }
+            statistics();
+        }
+        function checkAndCalculate(obj){
+            check(obj);
+            calculate(obj);
+            statistics();
+        }
+        function calculate(obj){
+            var pscj=0, qzcj=0, qmcj=0, cqcj=0, bkcj=0, i=0;
+
+            ps=eval("form1.ps_"+obj.name.substring(3)+".value")
+            qz=eval("form1.qz_"+obj.name.substring(3)+".value")
+            qm=eval("form1.qm_"+obj.name.substring(3)+".value")
+            cq=eval("form1.cq_"+obj.name.substring(3)+".value")
+            bk=eval("form1.bk_"+obj.name.substring(3)+".value")
+            zp=eval("form1.zp_"+obj.name.substring(3));
+
+            if (ps=="" && qz=="" && qm=="" && cq=="" && bk=="")	zp.value="";
+            else{
+                if (ps=="") pscj=0;
+                else pscj=Number(ps);
+                if (qz=="") qzcj=0;
+                else qzcj=Number(qz);
+                if (qm=="") qmcj=0;
+                else qmcj=Number(qm);
+                if (cq=="") cqcj=0;
+                else cqcj=Number(cq);
+                if (bk=="") bkcj=0;
+                else bkcj=Number(bk);
+
+                i=(pscj*form1.ps_ratio.value+qzcj*form1.qz_ratio.value+qmcj*form1.qm_ratio.value+cqcj*form1.cq_ratio.value)/100;
+                zp.value = Math.round (i*Math.pow(10,0))/Math.pow(10,0);
+                if (i==0) zp.value=bkcj;
+            }
+        }
+        function statistics(){
+            var total_stu=0;
+            var exam_stu=0;
+            var miss_stu=0;
+            var max_score=0;
+            var min_score=100;
+            var total_score=0;
+            var average=0;
+
+            form1.rs1.value = 0;
+            form1.rs2.value = 0;
+            form1.rs3.value = 0;
+            form1.rs4.value = 0;
+            form1.rs5.value = 0;
+            form1.rs6.value = 0;
+            form1.rs7.value = 0;
+            form1.rs8.value = 0;
+
+            for(j=1;j<form1.length;j++) {
+                if (form1.elements[j].name.substring(0,3)=="qm_" && form1.elements[j].name!="qm_ratio" && form1.elements[j].value!=""){
+                    if (form1.elements[j].value>=95) form1.rs8.value=Number(form1.rs8.value)+1;
+                    else if (form1.elements[j].value<95/(100/Number(form1.qmzf.value)) && form1.elements[j].value>=90/(100/Number(form1.qmzf.value))) form1.rs7.value=Number(form1.rs7.value)+1;
+                    else if (form1.elements[j].value<90/(100/Number(form1.qmzf.value)) && form1.elements[j].value>=85/(100/Number(form1.qmzf.value))) form1.rs6.value=Number(form1.rs6.value)+1;
+                    else if (form1.elements[j].value<85/(100/Number(form1.qmzf.value)) && form1.elements[j].value>=80/(100/Number(form1.qmzf.value))) form1.rs5.value=Number(form1.rs5.value)+1;
+                    else if (form1.elements[j].value<80/(100/Number(form1.qmzf.value)) && form1.elements[j].value>=75/(100/Number(form1.qmzf.value))) form1.rs4.value=Number(form1.rs4.value)+1;
+                    else if (form1.elements[j].value<75/(100/Number(form1.qmzf.value)) && form1.elements[j].value>=70/(100/Number(form1.qmzf.value))) form1.rs3.value=Number(form1.rs3.value)+1;
+                    else if (form1.elements[j].value<70/(100/Number(form1.qmzf.value)) && form1.elements[j].value>=60/(100/Number(form1.qmzf.value))) form1.rs2.value=Number(form1.rs2.value)+1;
+                    else if (form1.elements[j].value<60/(100/Number(form1.qmzf.value))) form1.rs1.value=Number(form1.rs1.value)+1;
+
+                    if (form1.elements[j].value>max_score) 	max_score=form1.elements[j].value;
+                    if (form1.elements[j].value<min_score) 	min_score=form1.elements[j].value;
+                    exam_stu++;
+                    total_score=total_score+Number(form1.elements[j].value);
+                }
+                else if (form1.elements[j].name.substring(0,3)=="qm_" && form1.elements[j].name!="qm_ratio" && form1.elements[j].value==""){
+                    miss_stu++;
+                }
+            }
+
+            total_stu=miss_stu+exam_stu;
+            form1.average.value=Math.round (Number(total_score)/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2)*(100/Number(form1.qmzf.value));
+            form1.max_score.value=max_score*(100/Number(form1.qmzf.value));
+            form1.min_score.value=min_score*(100/Number(form1.qmzf.value));
+            form1.total_stu.value=total_stu;
+            form1.exam_stu.value=exam_stu;
+            form1.miss_stu.value=miss_stu;
+
+            form1.bfb1.value=Math.round (Number(form1.rs1.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb2.value=Math.round (Number(form1.rs2.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb3.value=Math.round (Number(form1.rs3.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb4.value=Math.round (Number(form1.rs4.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb5.value=Math.round (Number(form1.rs5.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb6.value=Math.round (Number(form1.rs6.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb7.value=Math.round (Number(form1.rs7.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+            form1.bfb8.value=Math.round (Number(form1.rs8.value)*100/Number(exam_stu)*Math.pow(10,2))/Math.pow(10,2);;
+        }
+    </script>
+</HEAD>
+<BODY>
+    <header>
+        <h2>
+            成绩录入
+        </h2>
+    </header>
+    <div class="content">
+        <form name="form1" method="post" class="am-form" action="TeacherClassScreSetSave.jsp" style="margin-bottom: 60px">
+            <div class="title">
+                <label>课程信息</label>
+                <hr/>
+            </div>
+            <div class="form-container">
+                <label>所属学期：</label>
+                <span id="term_code_span">2015201602</span><input name="term_code" type="hidden" value="2015201602">
+                <label>课程类型：</label>
+                <span id="class_type">排课</span>
+            </div>
+            <div class="form-container">
+                <label>课程代码：</label>
+                <span id="class_code_span">201403SX02</span><input name="crs_id" type="hidden" value="201403SX02">
+                <label>课程名称：</label>
+                <span id="stu_name">英语写作（二下）</span>
+            </div>
+            <div class="form-container">
+                <label>院系名称：</label>
+                <input name="stu_school" type="text" id="stu_school" value="国际商学院">
+                <input  class="am-btn am-btn-sm am-radius am-btn-warning" type="submit" name="Submit" value="修改院系名称">
+                <label>（注：二外课程班可不填此项）</label>
+            </div>
+            <div class="title">
+                <label>成绩统计</label>
+                <span>（用于统计期末卷面成绩的分布情况，可根据实际情况更改期末成绩总分，更改后不需要点击回车键，点击对话框外任意地方即可重新统计成绩）</span>
+                <hr/>
+            </div>
+            <div class="cal-box">
+                <div class="form-container">
+                    <label>期末成绩总分：</label>
+                    <input name="qmzf" type="text" id="qmzf" value="100" size="5" maxlength="5" onChange="javascript:statistics()">
+                </div>
+                <div class="form-container">
+                    <label>应考人数：</label>
+                    <input name="total_stu" type="text" id="total_stu" disabled>
+                    <label>实考人数：</label>
+                    <input name="exam_stu" type="text" id="exam_stu" disabled>
+                    <label>缺考人数：</label>
+                    <input name="miss_stu" type="text" id="miss_stu" disabled>
+                </div>
+                <div class="form-container">
+                    <label>最高分：</label>
+                    <input name="max_score" type="text" id="max_score" disabled>
+                    <label>最低分：</label>
+                    <input name="min_score" type="text" id="min_score" disabled>
+                    <label>平均分：</label>
+                    <input name="average" type="text" id="average" disabled>
+                </div>
+                <div class="form-container">
+                    <table width="100%">
+                    <tr>
+                        <td><label>分组</label></td>
+                        <td><label>60分以下</label></td>
+                        <td><label>60-69分</label></td>
+                        <td><label>70-74分</label></td>
+                        <td><label>75-79分</label></td>
+                        <td><label>80-84分</label></td>
+                        <td><label>85-89分</label></td>
+                        <td><label>90-94分</label></td>
+                        <td><label>95-100分</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>人数</label></td>
+                        <td><input class="num" name="rs1" type="text" id="rs1" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num" name="rs2" type="text" id="rs2" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num" name="rs3" type="text" id="rs3" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num" name="rs4" type="text" id="rs4" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num"  name="rs5" type="text" id="rs5" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num" name="rs6" type="text" id="rs6" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num" name="rs7" type="text" id="rs7" value="0" size="5" maxlength="5" disabled></td>
+                        <td><input class="num" name="rs8" type="text" id="rs8" value="0" size="5" maxlength="5" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label>百分比</label></td>
+                        <td><input class="num" name="bfb1" type="text" id="bfb1" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb2" type="text" id="bfb2" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb3" type="text" id="bfb3" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb4" type="text" id="bfb4" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb5" type="text" id="bfb5" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb6" type="text" id="bfb6" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb7" type="text" id="bfb7" value="0" size="5" maxlength="5" disabled>%</td>
+                        <td><input class="num" name="bfb8" type="text" id="bfb8" value="0" size="5" maxlength="5" disabled>%</td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        <div class="title">
+            <label>请录入本课程选课学生成绩</label>
+            <div class="am-btn-group am-margin-left">
+                <input class="am-btn am-btn-xs am-radius am-btn-primary " type="reset" name="button" value="返回前页" onClick="self.location.href='TeacherClassScreSet.jsp'">
+                <input class="am-btn am-btn-xs am-radius am-btn-primary am-btn-group" type="reset" name="Submit" value="放弃修改">
+                <input class="am-btn am-btn-xs am-radius am-btn-primary am-btn-group" type="submit" name="Submit" value="保存修改" >
+                <a class="am-btn am-btn-xs am-radius am-btn-warning am-btn-group" href="TeacherClassScreTableNew.jsp?term_code=2015201602&crs_id=201403SX02" target="_blank">打印成绩单</a>
+                <a class="am-btn am-btn-xs am-radius am-btn-warning am-btn-group" href="TeacherClassScreImprtPage.jsp?term_code=2015201602&crs_id=201403SX02">成绩导入</a>
+            </div>
+            <hr/>
+        </div>
+            <div class="cal-box">
+                <div class="form-container">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <strong style="font-size: 1.8rem">设定在总评成绩中的折合率</strong>
+                            </td>
+                            <td>
+                                <label>平时成绩：</label><input class="num" name="ps_ratio" type="text" id="ps_ratio" value="0"   maxlength="3" onChange="javascript:checkAndCalculates(ps_ratio)">%
+                            </td>
+                            <td>
+                                <label>期中成绩：</label><input class="num" name="qz_ratio" type="text" id="qz_ratio" value="0"   maxlength="3" onChange="javascript:checkAndCalculates(qz_ratio)">%
+                            </td>
+                            <td>
+                                <label>期末成绩：</label><input class="num" name="qm_ratio" type="text" id="qm_ratio" value="100" maxlength="3" onChange="javascript:checkAndCalculates(qm_ratio)">%
+                            </td>
+                            <td>
+                                <label>出勤成绩：</label><input class="num" name="cq_ratio" type="text" id="cq_ratio" value="0"   maxlength="3" onChange="javascript:checkAndCalculates(cq_ratio)">%
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                <table id="table_id" class="display am-table-centered" width="100%">
+                    <thead>
+                        <tr>
+                        <td height="30"><div align="center">学生学号</div></td>
+                        <td><div align="center">学生姓名</div></td>
+                        <td><div align="center">平时成绩</div></td>
+                        <td><div align="center">期中成绩</div></td>
+                        <td><div align="center">期末成绩</div></td>
+                        <td><div align="center">出勤成绩</div></td>
+                        <td><div align="center">补考成绩</div></td>
+                        <td><div align="center">总评成绩</div></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>140200XX</td>
+                            <td>XX</td>
+                            <td>
+                                <input class="btm_line_input" name="ps_14020027" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(ps_14020027)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="qz_14020027" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(qz_14020027)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="qm_14020027" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(qm_14020027)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="cq_14020027" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(cq_14020027)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="bk_14020027" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(bk_14020027)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="zp_14020027" type="text" value="" size="5" maxlength="5" style="ime-mode:disabled">
+                            </td>
+                        </tr>
+                        <script language="javascript">
+                            document.all.form1.zp_14020027.readOnly=true;
+                        </script>
+                        <tr>
+                            <td>140200XX</td>
+                            <td>XXX</td>
+                            <td>
+                                <input class="btm_line_input" name="ps_14020032" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(ps_14020032)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="qz_14020032" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(qz_14020032)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="qm_14020032" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(qm_14020032)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="cq_14020032" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(cq_14020032)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="bk_14020032" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(bk_14020032)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="zp_14020032" type="text" value="" size="5" maxlength="5" style="ime-mode:disabled">
+                            </td>
+                        </tr>
+                        <script language="javascript">
+                            document.all.form1.zp_14020032.readOnly=true;
+                        </script>
+                        <tr >
+                            <td>140200XX</td>
+                            <td>XXX</td>
+                            <td>
+                                <input class="btm_line_input" name="ps_14020034" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(ps_14020034)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="qz_14020034" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(qz_14020034)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="qm_14020034" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(qm_14020034)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="cq_14020034" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(cq_14020034)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="bk_14020034" type="text" value="" maxlength="5" onChange="javascript:checkAndCalculate(bk_14020034)">
+                            </td>
+                            <td>
+                                <input class="btm_line_input" name="zp_14020034" type="text" value="" size="5" maxlength="5" style="ime-mode:disabled">
+                          </td>
+                        </tr>
+                        <script language="javascript">
+                            document.all.form1.zp_14020034.readOnly=true;
+                        </script>
+                    </tbody>
+                </table>
+        </form>
+    </div>
+    <script src="js/less.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    <script>
+        var table = $('#table_id').DataTable({
+            language:{
+                'info':"显示第 _START_ 至 _END_ 条结果，当前第 _PAGE_ 页（共 _PAGES_ 页）",
+                'infoEmpty':'没有添加任何数据',
+                'infoFiltered':'（总共 _MAX_ 条项目）',
+                "zeroRecords": "没有找到相应结果"
+            },
+            dom: 'Bfrtip',
+            "searching": false
+        });
+    </script>
+    <script language="JavaScript" type="text/JavaScript">
+        statistics();
+    </script>
+</BODY>
+</HTML>

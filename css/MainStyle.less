@@ -1,0 +1,172 @@
+/* color */
+@primaryColor : #2980B9;
+@AprimaryColor : #0078ff;
+@secondaryColor : #0E90D2;
+@AsecondaryColor : #0051b0;
+/*
+    --red--
+    @primaryColor : #d92121;
+    @secondaryColor : #ed4b0d;
+    @AprimaryColor : #ff2d03;
+    @AsecondaryColor : #b00700;
+*/
+@colorBlack : #000;
+@colorDark : #333;
+@colorWhite : #fff;
+@colorGray : #ddd;
+@colorDarkGray : #ccc;
+@colorDanger: #f43621;
+/* end color define*/
+
+* {
+  margin:0;
+  padding:0
+}
+body, html {
+  height:100%;
+  width:100%;
+  overflow:auto;
+}
+body {
+  background: @colorWhite;
+  color: @colorDark;
+  font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+  font-size: 1.2em;
+}
+a {
+  color: @AprimaryColor;
+  text-decoration: none;
+  font-weight: 600;
+}
+a:hover {
+  color: @AsecondaryColor;
+}
+header {
+  position: relative;
+}
+header h2 {
+  background: #FFFFFF;
+  color: @primaryColor;
+  margin: 10px 0 20px;
+  font-size: 2.2rem;
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+  font-weight: 600;
+}
+
+header:before {
+  content: '';
+  width: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 23px;
+  border-bottom: 2px solid @primaryColor;
+}
+
+label {
+  font-size: 1.6rem;
+}
+
+.am-form input[type=text] {
+  width: 150px;
+  font-size: 1.4rem;
+  border-radius: 2px;
+  outline: none;
+}
+.am-form .form-container input,.title input{
+  display: inline-block !important;
+  margin-left: 20px;
+}
+.form-container {
+  margin-bottom: 15px;
+}
+.form-container label {
+  font-weight: 400;
+}
+.title label {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: #797979;
+}
+.title hr {
+  margin: 0 0 10px 0;
+  border-top: 2px solid @colorGray;
+}
+table {
+  font-size: 1em;
+  color: @colorDark;
+}
+table a {
+  color: @AprimaryColor;
+}
+thead tr {
+  font-size: 1em;
+  font-weight: 100;
+  text-align: center;
+  color: @colorWhite;
+  background: @secondaryColor;
+  height: 30px;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+  color: @colorDark;
+}
+.table-wrapper {
+  margin: 0 20px;
+}
+.form-container span {
+  display: inline-block;
+  width: 150px;
+  margin: 0 20px;
+  font-size: 1.6rem;
+}
+.content {
+  margin: 0 20px;
+}
+.title input {
+  margin-bottom: 7px
+}
+.note {
+  background: @colorWhite;
+  padding: 20px;
+  box-shadow: 2px 2px 8px @colorDark;
+}
+.note p{
+  margin: 0;
+  color: @colorDanger;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.cal-box input.num {
+  width: 55px;
+}
+.cal-box label {
+  width: 115px;
+}
+.cal-box table label {
+  text-align: center;
+
+}
+.cal-box table td {
+  padding-bottom: 10px;
+}
+.am-form input.btm_line_input {
+  border: 2px transparent;
+  border-bottom: 2px solid @colorDarkGray;
+  width: 55px;
+  box-shadow: none;
+  background: transparent;
+  margin: 0 auto;
+}
+.am-form input.btm_line_input:focus {
+  box-shadow: none;
+}
+.am-btn-primary,.am-btn-group .am-btn-primary{
+  background: @primaryColor;
+  border-color: @AsecondaryColor;
+}
+.am-btn-primary:hover {
+  background: @secondaryColor;
+  border-color:@AprimaryColor;
+}

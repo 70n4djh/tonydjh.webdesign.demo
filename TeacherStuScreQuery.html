@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>按学号查询成绩 </TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <LINK href="css/amazeui.min.css" type=text/css rel=stylesheet>
+    <LINK href="css/MainStyle.less" type=text/css rel=stylesheet/less>
+    <script language="javascript">
+
+        function modify(i){
+            var j = 0;
+//	window.alert(I.name);
+            for(j=0;j<form2.length;j++) {
+                if (form2.elements[j].name==i.name && form2.elements[j].disabled==false){
+                    form2.elements[j].disabled=true;
+                    break;
+                }
+                if (form2.elements[j].name==i.name && form2.elements[j].disabled==true){
+                    form2.elements[j].disabled=false;
+                    break;
+                }
+            }
+        }
+
+    </script>
+</HEAD>
+<BODY>
+        <header><h2>按学号查询成绩</h2></header>
+        <div class="content">
+            <form name="form1" method="post" action="" class="am-form" style="margin-bottom: 60px">
+                <div class="title">
+                    <label>查询学生</label>
+                    <hr/>
+                </div>
+                <div class="form-container">
+                    <label>学生学号：</label>
+                    <input name="stu_id" type="text" id="stu_id" >
+                    <input type="submit" class="am-btn am-btn-sm am-radius am-btn-warning" name="Submit" value="查询课程成绩">
+                </div>
+                <div class="form-container">
+                    <label>学生姓名：</label><span id="stu_name"></span>
+                    <label>所属年级：</label><span id="stu_grade"></span>
+                    <label>所属班级：</label><span id="stu_class"></span>
+                </div>
+
+            </form>
+            <form name="form2" method="post" action="TeacherStuScreSetSave.jsp">
+                <div class="title">
+                    <label>该生所选的各门课程总评成绩列表</label>
+                    <input type="button" name="Submit"  value="下载保存" class="am-btn am-btn-xs am-radius am-btn-primary" onClick="window.open('download.jsp')">
+                    <hr/>
+                </div>
+                <table width="100%" id="table_id" class="display">
+                    <thead>
+                    <tr>
+                        <td>课程代码</td>
+                        <td>课程名称</td>
+                        <td>课程级别</td>
+                        <td>所属学期</td>
+                        <td>总评成绩</td>
+                    </tr>
+                    </thead>
+                </table>
+            </form>
+        </div>
+</BODY>
+<script src="js/less.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+<script>
+    var table = $('#table_id').DataTable({
+        language:{
+            'info':"显示第 _START_ 至 _END_ 条结果，当前第 _PAGE_ 页（共 _PAGES_ 页）",
+            'infoEmpty':'没有添加任何数据',
+            'infoFiltered':'（总共 _MAX_ 条项目）',
+            "zeroRecords": "没有找到相应结果"
+        },
+        dom:"Bfftip",
+        "searching": false
+    });
+
+</script>
+</HTML>
+

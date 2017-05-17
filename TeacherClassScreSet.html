@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>按教学班录入成绩</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <LINK href="css/amazeui.min.css" type=text/css rel=stylesheet>
+    <LINK href="css/MainStyle.less" type=text/css rel=stylesheet/less>
+
+</HEAD>
+
+<BODY>
+<header>
+    <h2>按教学班录入成绩</h2>
+</header>
+<div class="content">
+    <TABLE id="table_id" class="display" width="100%" align=center border=0>
+        <thead>
+        <tr>
+            <td>所属学期</td>
+            <td>课程代码</td>
+            <td>课程名称</td>
+            <td>课程类型</td>
+            <td>课程级别</td>
+            <td>成绩录入与维护</td>
+        </tr>
+        </thead>
+    </TABLE>
+    <div class="note">
+        <p>成绩录入说明：</p>
+        <p>1.请任课教师点击需要录入成绩的课程班所在行的“成绩录入与维护”链接；</p>
+        <p>2.在“成绩录入”页面中，若所授课程班属于非二外课程班，请任课教师填写学生所属院系名称，并点击“修改院系名称”按钮保存修改内容；</p>
+        <p>3.请设定各项成绩在总评成绩中的折合率。例如：平时成绩满分为10分，在总评成绩中平时成绩占10分，则平时成绩的折合率为100%；若平时成绩满分为20分，在总评成绩中平时成绩占10分，则平时成绩的折合率为50%，以此类推。请注意，百分号（%）不需要填写；</p>
+        <p>4.在成绩表中，学生按照考勤表排列，填写时请每隔一段时间（最多15分钟）进行一次保存操作，以免丢失数据；</p>
+        <p>5.所有成绩填写完毕后，请点击“保存修改”按钮；使用打印成绩单功能前，必须保存所做过的所有修改；</p>
+        <p>6.点击“打印成绩单”按钮，系统将弹出“文件下载”对话框，请选择“打开”，在继续弹出的“这张网页中的某些文件……”对话框中选择“是”，此时，系统会为您自动生成WORD版本的“成绩明细表”和“成绩单”，两表按学生学号排序，该表中的各项百分比需要任课教师手工填写。</p>
+        <p>7.如需保存“成绩明细表”和“成绩单”，请选择菜单“文件”——“另存为……”，在另存为对话框中选择保存类型为“WORD文档”，文件名称可根据需要自行定义。</p>
+    </div>
+</div>
+<script src="js/less.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+<script>
+    var table = $('#table_id').DataTable({
+        language:{
+            'info':"显示第 _START_ 至 _END_ 条结果，当前第 _PAGE_ 页（共 _PAGES_ 页）",
+            'infoEmpty':'没有添加任何数据',
+            'infoFiltered':'（总共 _MAX_ 条项目）',
+            "zeroRecords": "没有数据"
+        },
+        dom: 'Bfrtip',
+        "searching": false
+    });
+
+</script>
+</BODY>
+</HTML>
+

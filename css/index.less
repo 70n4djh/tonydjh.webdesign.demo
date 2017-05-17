@@ -1,0 +1,215 @@
+/* color */
+
+    @primaryColor : #2980B9;
+    @secondaryColor : #0E90D2;
+    @AprimaryColor : #0078ff;
+    @AsecondaryColor : #0051b0;
+/*
+  --red--
+    @primaryColor : #d92121;
+    @secondaryColor : #ed4b0d;
+    @AprimaryColor : #ff2d03;
+    @AsecondaryColor : #b00700;
+*/
+@colorBlack : #000;
+@colorDark : #333;
+@colorWhite : #fff;
+@colorGray : #ddd;
+/* end color define*/
+
+* {
+  margin:0;
+  padding:0
+}
+body, html {
+  height:100%;
+  width:100%;
+  overflow:auto;
+}
+BODY {
+  font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+  background: #FFFFFF;
+  color: @colorBlack;
+  min-height: 100%;
+  min-width: 1200px;
+}
+TD {
+  FONT-SIZE: 12px;
+  padding: 0;
+}
+table {
+  height:100%;
+  border-collapse: collapse;
+  width:100%;
+  border:0;
+}
+.head {
+  background: @primaryColor;
+}
+.head-wrap {
+  margin: 0 50px;
+
+}
+.head-text {
+  display: inline-block;
+  float: left;
+  height: 100px;
+  border-left: 2px solid @colorWhite;
+  padding-left: 20px;
+}
+
+.head-a {
+  float: right;
+  margin-top: 40px;
+  position: absolute;
+  right: 0;
+}
+.head img{
+  display: block;
+  float: left;
+  padding-right: 15px;
+}
+.head span {
+  display: block;
+}
+.head-a a{
+  display: inline-block;
+  float: left;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 30px;
+  margin: auto 0;
+  border-left: 1px solid @colorWhite;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: @colorWhite;
+  transition: 0.3s ease-out;
+}
+.head-a a:hover{
+  color: @colorBlack;
+  font-weight: 400;
+
+}
+.topbar {
+  height: 30px;
+  background: url("../img/logfootbar.jpg") repeat-x;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.main-text {
+  color: @colorWhite;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 55px;
+}
+.sub-text {
+  color: @colorWhite;
+  font-size: 2rem;
+  line-height: 45px;
+}
+.cf {
+  content: "";
+  display: block;
+  clear: both;
+}
+.foot {
+  background: @colorDark;
+  font-size: 0.2rem;
+  font-weight: 400;
+  color: @colorWhite;
+}
+.foot span {
+  display: block;
+  text-align: center;
+}
+.foot a {
+  color: @secondaryColor;
+  text-decoration: none;
+}
+
+td.nav{
+  transition: all 0.3s ease-out;
+}
+td.nav:hover {
+  background-color: @colorGray;
+}
+.main_left {
+  TABLE-LAYOUT: auto; BACKGROUND: url("")
+}
+.left_iframe {
+  BACKGROUND: none transparent scroll repeat 0% 0%; VISIBILITY:  inherit;width:100%;  HEIGHT: 100%
+}
+.main_iframe {
+  z-index:-1; VISIBILITY: inherit; WIDTH: 100%; HEIGHT: 99%
+}
+.bg {
+  width: 700px;
+  margin: 0 auto;
+  height: 550px;
+  background: url("../img/index_bg.jpg") no-repeat center;
+  position: relative;
+}
+.bg form{
+  position: absolute;
+  width: 240px;
+  right: 50px;
+  top: 200px;
+  font-size: 1.6rem;
+}
+.bg label{
+  width: 80px;
+  color: @colorWhite;
+  font-weight: 400;
+  text-shadow: 1px 1px 5px @colorDark;
+}
+.bg input,select{
+  width: 150px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px @colorDark;
+  border: 1px solid #ddd;
+  font-size: 1.4rem;
+  color: @colorBlack;
+  background: rgba(255,255,255,0.5);
+}
+.bg button {
+  border-radius: 3px;
+  border: 2px solid #ddd;
+  background: rgba(255,255,255,0);
+  box-shadow: 1px 1px 5px @colorDark;
+  color: @colorWhite;
+  padding: 0.5em;
+}
+.login-side {
+  position: absolute;
+  top: 250px;
+  left: 70px;
+  color: @colorWhite;
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 5px #333;
+}
+.login-side a {
+  color: @AprimaryColor;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+.login-side a:hover {
+  color: @AsecondaryColor;
+}
+.foot-bar {
+  position: absolute;
+  bottom: 0;
+  width: 700px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.btm-bar {
+  position: absolute;
+  bottom: 80px;
+  margin-top: 500px;
+  width: 600px;
+  left: 55px;
+  font-size: 1.2rem;
+}

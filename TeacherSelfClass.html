@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>查看本人教学班</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <LINK href="css/amazeui.min.css" type=text/css rel=stylesheet>
+    <LINK href="css/MainStyle.less" type=text/css rel=stylesheet/less>
+</HEAD>
+
+<BODY>
+<header>
+    <h2>查看本人教学班</h2>
+</header>
+<div class="table-wrapper">
+     <TABLE id="table_id" class="display" width="100%">
+        <thead>
+            <tr>
+                <td>所属学期</td>
+                <td>课程代码</td>
+                <td>课程名称</td>
+                <td>课程类型</td>
+                <td>课程级别</td>
+                <td>授课教师</td>
+                <td>上课时间</td>
+                <td>上课地点</td>
+                <td>选课人数</td>
+                <td>最大人数</td>
+                <td>所属学期</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </TABLE>
+
+</div>
+</BODY>
+<script src="js/less.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+<script>
+    var table = $('#table_id').DataTable({
+        language:{
+            'info':"显示第 _START_ 至 _END_ 条结果，当前第 _PAGE_ 页（共 _PAGES_ 页）",
+            'infoEmpty':'没有添加任何数据',
+            'infoFiltered':'（总共 _MAX_ 条项目）',
+            "zeroRecords": "没有找到相应结果"
+        },
+        dom: 'Bfrtip',
+        "searching": false
+    });
+
+</script>
+</HTML>
+

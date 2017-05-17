@@ -1,0 +1,54 @@
+/* color */
+    @primaryColor : #2980B9;
+    @secondaryColor : #0E90D2;
+    @AprimaryColor : #0078ff;
+    @AsecondaryColor : #0051b0;
+/* -- red --
+    @primaryColor : #d92121;
+    @secondaryColor : #ed4b0d;
+    @AprimaryColor : #ff2d03;
+    @AsecondaryColor : #b00700;
+*/
+@colorBlack : #000;
+@colorDark : #333;
+@colorWhite : #fff;
+@colorGray : #ddd;
+/* end color define*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: @primaryColor;
+  color: #FFFFFF;
+  font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+}
+li {
+  list-style: none;
+  font-size: 0.8rem;
+}
+a {
+  color: @colorWhite;
+  background: @primaryColor;
+  text-decoration: none;
+  display: block;
+  padding: 12px 0 12px 40px;
+  font-weight: 100;
+}
+a:hover {
+  color: @primaryColor;
+  background: @colorWhite;
+  transition: all 0.3s ease-out;
+}
+.last{
+  border: 0px;
+}
+li.dtreeNode {
+  color: @colorWhite;
+  font-size: 1.1rem;
+  font-weight: 200;
+  padding: 10px;
+  background: @secondaryColor;
+
+}

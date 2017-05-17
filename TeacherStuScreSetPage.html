@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>按学号录入成绩</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <LINK href="css/amazeui.min.css" type=text/css rel=stylesheet>
+    <LINK href="css/MainStyle.less" type=text/css rel=stylesheet/less>
+    <script language="javascript">
+        function modify(i){
+            var j = 0;
+//	window.alert(I.name);
+            for(j=0;j<form2.length;j++) {
+                if (form2.elements[j].name==i.name && form2.elements[j].disabled==false){
+                    form2.elements[j].disabled=true;
+                    break;
+                }
+                if (form2.elements[j].name==i.name && form2.elements[j].disabled==true){
+                    form2.elements[j].disabled=false;
+                    break;
+                }
+            }
+        }
+    </script>
+</HEAD>
+
+<BODY>
+<header>
+    <h2>
+        按学号录入成绩
+    </h2>
+</header>
+   <div class="content">
+       <form name="form1" method="post" action="" class="am-form" style="margin-bottom: 60px">
+           <div class="title">
+               <label>查询学生</label>
+               <hr/>
+           </div>
+           <div class="form-container">
+               <label>学生学号：</label>
+               <input name="stu_id" type="text" id="stu_id" >
+               <input type="submit" class="am-btn am-btn-sm am-radius am-btn-warning" name="Submit" value="查看该生所选课程">
+           </div>
+           <div class="form-container">
+               <label>学生姓名：</label><span id="stu_name"></span>
+               <label>所属年级：</label><span id="stu_grade"></span>
+               <label>所属班级：</label><span id="stu_class"></span>
+           </div>
+
+       </form>
+       <form name="form2" method="post" action="TeacherStuScreSetSave.jsp">
+           <div class="title">
+               <label>请录入该生的总评成绩</label>
+               <input name="term_code" type="hidden" id="term_code" value="2015201602">
+               <input name="stu_id" type="hidden"  value="">
+               <div class="am-btn-group am-margin-left">
+                   <input class="am-btn am-btn-xs am-radius am-btn-primary " type="reset" name="Submit" value="放弃未保存修改内容">
+                   <input class="am-btn am-btn-xs am-radius am-btn-primary am-btn-group" type="submit" name="Submit" value="保存修改内容">
+                   <input class="am-btn am-btn-xs am-radius am-btn-primary am-btn-group" type="submit" name="Submit" value="提交成绩" onClick="if(confirm('提交之后，不能再修改，您确定提交么？')) location.href='TeacherScrePutin.jsp?term_code=2015201602&crs_id='">
+               </div>
+
+               <hr/>
+           </div>
+           <table id="table_id" class="display" width="100%">
+                <thead>
+                    <tr>
+                        <td>选中</td>
+                        <td>课程代码</td>
+                        <td>课程名称</td>
+                        <td>课程级别</td>
+                        <td>所属学期</td>
+                        <td>总评成绩</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>选中</td>
+                    <td>课程代码</td>
+                    <td>课程名称</td>
+                    <td>课程级别</td>
+                    <td>所属学期</td>
+                    <td>总评成绩</td>
+                </tbody>
+           </table>
+       </form>
+   </div>
+<script src="js/less.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+<script>
+    var table = $('#table_id').DataTable({
+        language:{
+            'info':"显示第 _START_ 至 _END_ 条结果，当前第 _PAGE_ 页（共 _PAGES_ 页）",
+            'infoEmpty':'没有添加任何数据',
+            'infoFiltered':'（总共 _MAX_ 条项目）',
+            "zeroRecords": "没有找到相应结果"
+        },
+        dom: 'Bfrtip',
+        "searching": false
+    });
+
+</script>
+
+
+</BODY>
+</HTML>
+

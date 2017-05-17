@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>专用英语学院选课系统-教师用户</title>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <link  href="css/amazeui.min.css" type=text/css rel=stylesheet>
+        <link  href="css/index.less" type=text/css rel=stylesheet/less>
+        <script>
+            function switchSysBar(){
+            if (document.all("frmTitle").style.display=="none"){
+                document.all("frmTitle").style.display="";
+            }
+            else{
+                document.all("frmTitle").style.display="none";
+            }
+        }
+            function SetWinHeight(obj){
+            var frmright=obj;
+            if (document.getElementById)
+            {
+                if (frmright && !window.opera)
+                {
+                    if (frmright.contentdocument && frmright.contentdocument.body.offsetHeight)
+                        frmright.height = frmright.contentdocument.body.offsetHeight;
+                    else if(frmright.Document && frmright.Document.body.scrollHeight)
+                        frmright.height = frmright.Document.body.scrollHeight;
+                }
+            }
+        }
+        </script>
+    </head>
+
+<BODY>
+<TABLE class="layout" cellspacing="0" cellpadding="0"  width="100%" height="100%" >
+    <div class="head-a">
+        <a href="index.html" target=_top>回到首页</a>
+        <a href="PasswrdChange.jsp" target=_top>修改密码</a>
+        <a href="logout.jsp" target=_top>安全退出</a>
+    </div>
+    <TBODY>
+        <tr class="head" title=关闭/打开标题栏>
+            <td colspan="3" style="height:20px" >
+                <div class="head-wrap" style="margin: 10px 50px">
+                    <img src="img/app.png" alt="logo" width="100" height="100"/>
+                    <div class="head-text">
+                        <span class="main-text">XXX</span>
+                        <span class="sub-text">XX英语学院选课系统工作平台</span>
+                    </div>
+
+                    <div class="cf"></div>
+                </div>
+            </td>
+        </tr>
+
+        <Tr>
+            <td class=main_left id=frmTitle vAlign=top  name="fmTitle" width="250" height="100%">
+                <IFRAME class=left_iframe id=frmleft name=frmleft src="TeacherTree.html" frameBorder=0 allowTransparency></IFRAME>
+            </td>
+            <td class="nav" width="30" title="关闭/打开左栏" onclick=switchSysBar()>
+                <span class="am-padding-left-xs am-icon-angle-left am-text-xxxl"></span>
+            </td>
+            <td>
+                <IFRAME class=main_iframe id="frmright" name="frmright" onload="Javascript:SetWinHeight(this)" frameborder="0" scrolling="yes"
+                        src="TeacherMain.html"></IFRAME>
+            </td>
+        </tr>
+        <TR class="foot">
+            <td scope="col" height="50" colspan="3">
+                <span class="style1">Copyright (c) 2009-2016
+                    <A href="XXX" title=XXX target=_blank class="style2">
+                            XXX英语学院
+                    </A>All Rights Reserved.
+                </span>
+                <span class="style4">技术支持：
+                    <A href="XXX" title=XXX target=_blank class="style2">
+                        XXX
+                    </A>E-mail:XXX</span>
+            </td>
+        </TR>
+    </TBODY>
+</TABLE>
+<script src="js/less.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script>
+    $('.head').on('click',function(){
+        if ($(this).hasClass("in")){
+            $(this).removeClass("in")
+            $(".head-wrap").show()
+            $(".head-a").show()
+        } else {
+            $(".head-wrap").hide()
+            $(this).addClass("in")
+            $(".head-a").hide()
+        }
+    })
+
+</script>
+</body>
+</html>

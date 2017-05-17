@@ -1,0 +1,151 @@
+* {
+    margin:0;
+    padding:0
+}
+body, html {
+    height:100%;
+    width:100%;
+    overflow:auto;
+}
+body {
+    background: #FFFFFF;
+    color: #333333;
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    font-size: 1.2em;
+}
+a {
+    color: #288edf;
+    text-decoration: none;
+    font-weight: 600;
+}
+header {
+    position: relative;
+}
+header h2 {
+    background: #FFFFFF;
+    color: #2980B9;
+    margin: 10px 0 20px;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+header:before {
+    content: '';
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 23px;
+    border-bottom: 2px solid #2980B9;
+}
+
+label {
+    font-size: 1.6rem;
+}
+.btn {
+    border: #000;
+    background: #3a3a3a;
+    color: #34a2e5;
+    border-radius: 2px;
+    transition: all 0.3s ease-out;
+}
+.btn:hover {
+    color: #50beff;
+    background: #2f2f2f;
+}
+.am-form input[type=text] {
+    width: 150px;
+    font-size: 1.4rem;
+    border-radius: 2px;
+    outline: none;
+}
+.am-form .form-container input,.title input{
+    display: inline-block;
+    margin-left: 20px;
+}
+.form-container {
+    margin-bottom: 15px;
+}
+.form-container label {
+    font-weight: 400;
+}
+.title label {
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #797979;
+}
+.title hr {
+    margin: 0 0 10px 0;
+    border-top: 2px solid #DDDDDD;
+}
+table {
+    font-size: 1em;
+    color: #333;
+}
+table a {
+    color: #0063dc;
+}
+thead tr {
+    font-size: 1em;
+    font-weight: 100;
+    text-align: center;
+    color: #ffffff;
+    background: #0E90D2;
+    height: 30px;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+    color: #333333;
+}
+.table-wrapper {
+    margin: 0 20px;
+}
+.form-container span {
+    display: inline-block;
+    width: 150px;
+    margin: 0 20px;
+    font-size: 1.6rem;
+}
+.content {
+    margin: 0 20px;
+}
+.title input {
+   margin-bottom: 7px
+}
+.note {
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 2px 2px 8px #333333;
+}
+.note p{
+    margin: 0;
+    color: #f43621;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.cal-box input.num {
+    width: 55px;
+}
+.cal-box label {
+    width: 115px;
+}
+.cal-box table label {
+    text-align: center;
+
+}
+.cal-box table td {
+    padding-bottom: 10px;
+}
+.am-form input.btm_line_input {
+    border: 2px transparent;
+    border-bottom: 2px solid #ccc;
+    width: 55px;
+    box-shadow: none;
+    background: transparent;
+    margin: 0 auto;
+}
+.am-form input.btm_line_input:focus {
+    box-shadow: none;
+}
